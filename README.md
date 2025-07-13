@@ -20,9 +20,6 @@ Zpro1 v2 ist eine hochmoderne, realistisch umsetzbare CPU-Architektur für Smart
 3x Energiespar (1,9 GHz)
 
 
-Keine Zusatzkerne → Einfachheit, Kühlung und Effizienz.
-
-
 
 ---
 

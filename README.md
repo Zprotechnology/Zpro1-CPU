@@ -1,4 +1,4 @@
-Bei Fragen, Problemen oder Kommentare bitte unter Issues. Danke.
+Bei Fragen, Problemen oder Kommentare bitte unter Issues oder bei Kommentare. Danke.
 
 🔷 Zpro1 v2.1.1– Moderne Mobile CPU-Architektur (2025)
 

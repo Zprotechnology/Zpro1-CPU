@@ -1,3 +1,5 @@
+Bei Fragen, Problemen oder Kommentare bitte unter Issues. Danke.
+
 🔷 Zpro1 v2.1.1– Moderne Mobile CPU-Architektur (2025)
 
 Zpro1 v2 ist eine hochmoderne, realistisch umsetzbare CPU-Architektur für Smartphones und mobile Geräte, die Leistung, Effizienz und Systemintelligenz optimal verbindet. Sie basiert auf 12 physischen Kernen, innovativen Software-Fusionstechniken und einer tief integrierten NPU-Steuerung.

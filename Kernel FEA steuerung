@@ -1,0 +1,70 @@
+/*
+ * FEA - Fast Efficient Architecture (Zpro1 CPU-Konzept)
+ * Entwickelt von Zakaria Barzizoui
+ * Lizenz: CC BY-NC-ND 4.0
+ * Beschreibung: Dynamische Takt- und Abschaltsteuerung zur Strom- und Temperaturkontrolle im Kernel
+ */
+
+#include <linux/module.h>
+#include <linux/kernel.h>
+#include <linux/init.h>
+#include <linux/cpu.h>
+#include <linux/delay.h>
+#include <linux/workqueue.h>
+#include <linux/thermal.h>
+#include <linux/smp.h>
+
+#define MAX_POWER_WATT 8
+#define TEMP_LIMIT_C   75
+
+static struct delayed_work fea_check_work;
+
+static int get_mock_power_usage(void) {
+    // ⚠️ Platzhalter: Simuliert Leistungsaufnahme in Watt
+    return 9;  // z.B. über der Grenze
+}
+
+static int get_cpu_temp(int cpu) {
+    // ⚠️ Platzhalter: Simuliert CPU-Temperatur in Grad Celsius
+    return 72;  // z.B. nahe am Limit
+}
+
+static void fea_check_fn(struct work_struct *work) {
+    int cpu;
+    int power = get_mock_power_usage();
+
+    for_each_online_cpu(cpu) {
+        int temp = get_cpu_temp(cpu);
+
+        if (power > MAX_POWER_WATT || temp > TEMP_LIMIT_C) {
+            // Drossle CPU-Frequenz
+            pr_info("FEA: CPU%d wird gedrosselt. Temp=%d°C, Power=%dW\n", cpu, temp, power);
+            cpufreq_quick_set(cpu, 800000); // 800 MHz (Beispiel)
+        } else {
+            // Stelle normale Frequenz wieder her
+            cpufreq_quick_set(cpu, 2000000); // 2.0 GHz (Beispiel)
+        }
+    }
+
+    // Nächste Überprüfung in 5 Sekunden
+    schedule_delayed_work(&fea_check_work, 5 * HZ);
+}
+
+static int __init fea_module_init(void) {
+    pr_info("Zpro1-FEA: Modul wird geladen\n");
+    INIT_DELAYED_WORK(&fea_check_work, fea_check_fn);
+    schedule_delayed_work(&fea_check_work, 0);
+    return 0;
+}
+
+static void __exit fea_module_exit(void) {
+    cancel_delayed_work_sync(&fea_check_work);
+    pr_info("Zpro1-FEA: Modul wird entladen\n");
+}
+
+module_init(fea_module_init);
+module_exit(fea_module_exit);
+
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Zakaria Barzizoui");
+MODULE_DESCRIPTION("Zpro1 - FEA (Fast Efficient Architecture) Kernelmodul zur CPU-Leistungsoptimierung");

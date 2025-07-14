@@ -136,7 +136,7 @@ Fließende Grafikleistung auch bei anspruchsvollen Spielen.
 
 
 Wie kann man es ins Kernel einfügen? 
-Spezieller code wird zuerst für TDFS geschrieben, und ist dann eine erweiterung der thread steuerung. Die thread steuerung davor wird dann auch optimiert für TDFS, damit sie optimal zusammen arbeiten können.
+Spezieller code wird zuerst für TDFS geschrieben (bei den steuerungs Dateien geschrieben bei Github), und ist dann eine erweiterung der thread steuerung. Die thread steuerung davor wird dann auch optimiert für TDFS, damit sie optimal zusammen arbeiten können.
 ---
 
 11. Zusammenfassung und Vorteile

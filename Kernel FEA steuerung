@@ -1,6 +1,6 @@
 /*
  * FEA - Fast Efficient Architecture (Zpro1 CPU-Konzept)
- * Entwickelt von Zakaria Barzizoui
+ * Entwickelt von Zprotechnology
  * Lizenz: CC BY-NC-ND 4.0
  * Beschreibung: Dynamische Takt- und Abschaltsteuerung zur Strom- und Temperaturkontrolle im Kernel
  */
@@ -66,5 +66,5 @@ module_init(fea_module_init);
 module_exit(fea_module_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Zakaria Barzizoui");
+MODULE_AUTHOR("Zprotechnology");
 MODULE_DESCRIPTION("Zpro1 - FEA (Fast Efficient Architecture) Kernelmodul zur CPU-Leistungsoptimierung");

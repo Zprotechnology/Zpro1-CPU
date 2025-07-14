@@ -1,7 +1,7 @@
 Hier ist ein Thread steuerungs Konzept für dem Kernel:
 /*
  * TDFS/MCF Integration - Konzeptioneller Kernel-Code
- * Copyright (c) 2025 by Zakaria Barzizoui
+ * Copyright (c) 2025 by Zprotechnology
  * Lizenz: CC BY-NC-ND 4.0
  */
 
@@ -102,5 +102,5 @@ module_init(zpro1_kernel_init);
 module_exit(zpro1_kernel_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Zakaria Barzizoui");
+MODULE_AUTHOR("Zprotechnology");
 MODULE_DESCRIPTION("TDFS und MCF System für Kernel-Level CPU-Verwaltung");

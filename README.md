@@ -38,7 +38,8 @@ Ermöglicht fein abgestimmtes Multitasking mit minimalem Overhead.
 
 Wie funktioniert die duplizierung der Threads?
 Der Kernel wird so angepasst, das sich ein Thread verdoppeln kann, indem es virtuell einen zweiten erstellt, der aber dann die hälfte leistung des eigentlichen Threads nimmt, das sie 50/50 leistung vom eigentlichen haben. daas geschieht, wenn viel paralelisierung gebraucht wird. siehe MCF für TDFS leistungssteigerung.
-
+Aber warum 50/50 leistung des eigentlichen Kerns?
+Das ist so, weil ein thread mit der vollen Kern leistung geteilt wird, in fällen, wo viel paralelisierung gebraucht wird.
 
 
 ---

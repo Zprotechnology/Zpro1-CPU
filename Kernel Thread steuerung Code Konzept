@@ -1,0 +1,106 @@
+Hier ist ein Thread steuerungs Konzept für dem Kernel:
+/*
+ * TDFS/MCF Integration - Konzeptioneller Kernel-Code
+ * Copyright (c) 2025 by Zakaria Barzizoui
+ * Lizenz: CC BY-NC-ND 4.0
+ */
+
+#include <linux/sched.h>
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/init.h>
+#include <linux/cpumask.h>
+#include <linux/slab.h>
+#include <linux/kthread.h>
+#include <linux/mutex.h>
+
+#define MAX_VTHREADS 2
+#define MCF_GROUP_SIZE 4
+
+// Struktur für virtuelle Threads
+struct vthread {
+    struct task_struct *task;
+    int real_cpu_id;
+    int performance_weight; // z. B. 50% oder 100%
+};
+
+// Struktur für MCF-Superkern
+struct mcf_group {
+    struct vthread *threads[MCF_GROUP_SIZE];
+    int active;
+};
+
+// Thread-Listen
+static struct vthread *vthread_list[MAX_VTHREADS * NR_CPUS];
+static struct mcf_group *mcf_groups[NR_CPUS / MCF_GROUP_SIZE];
+
+static DEFINE_MUTEX(tdfs_mutex);
+
+// === TDFS ===
+int create_virtual_thread(struct task_struct *orig_task, int cpu_id) {
+    struct vthread *vt = kzalloc(sizeof(struct vthread), GFP_KERNEL);
+    if (!vt) return -ENOMEM;
+
+    vt->real_cpu_id = cpu_id;
+    vt->performance_weight = 50; // Virtuell → halbe Leistung
+
+    // Virtuellen Thread im Kernel erstellen
+    vt->task = kthread_create_on_cpu((int (*)(void *))orig_task->thread.fn,
+                                     orig_task->thread_data,
+                                     cpu_id,
+                                     "vthread_%d", cpu_id);
+    if (IS_ERR(vt->task)) {
+        kfree(vt);
+        return PTR_ERR(vt->task);
+    }
+
+    vthread_list[cpu_id * MAX_VTHREADS] = vt;
+    wake_up_process(vt->task);
+    return 0;
+}
+
+// === MCF ===
+int activate_mcf_group(int group_id) {
+    struct mcf_group *group = kzalloc(sizeof(struct mcf_group), GFP_KERNEL);
+    if (!group) return -ENOMEM;
+
+    for (int i = 0; i < MCF_GROUP_SIZE; i++) {
+        group->threads[i] = vthread_list[group_id * MCF_GROUP_SIZE + i];
+        if (!group->threads[i]) {
+            printk(KERN_WARNING "MCF: Thread fehlt in Gruppe %d\n", group_id);
+            kfree(group);
+            return -EINVAL;
+        }
+    }
+
+    group->active = 1;
+    mcf_groups[group_id] = group;
+
+    printk(KERN_INFO "MCF: Gruppe %d aktiviert.\n", group_id);
+    return 0;
+}
+
+// === Modul Initialisierung ===
+static int __init zpro1_kernel_init(void) {
+    printk(KERN_INFO "Zpro1: TDFS/MCF Kernelmodul geladen.\n");
+    mutex_lock(&tdfs_mutex);
+
+    create_virtual_thread(current, 0);    // CPU 0 – virtueller Thread
+    activate_mcf_group(0);               // MCF-Gruppe aktivieren
+
+    mutex_unlock(&tdfs_mutex);
+    return 0;
+}
+
+// === Modul Entfernen ===
+static void __exit zpro1_kernel_exit(void) {
+    printk(KERN_INFO "Zpro1: Kernelmodul entladen.\n");
+    // Aufräumen von Speicher etc. wäre nötig
+}
+
+module_init(zpro1_kernel_init);
+module_exit(zpro1_kernel_exit);
+
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Zakaria Barzizoui");
+MODULE_DESCRIPTION("TDFS und MCF System für Kernel-Level CPU-Verwaltung");

@@ -46,21 +46,29 @@ Für Virtuelle Thread teilung werden die VTs (Virtuall Threads) angepasst, damit
 Das macht man, indem man alle threads vollständig virtualisiert.
 
 3. CPALU – Connected Parallel ALU
-Die CPALU ist eine modulare ALU-Architektur für die Zpro1-CPU, aufgeteilt in vier physische Funktionsblöcke:
 
-Logik-Block: Führt logische Operationen (AND, OR, XOR, NOT) durch.
+Die CPALU ist eine moderne ALU-Architektur, die aus vier Hauptblöcken besteht:
 
-Addier-Block: Führt Addition und Subtraktion mit kaskadierten Volladdierern aus.
+Logic (logische Operationen)
 
-Shifter-Block: Verantwortlich für Bitverschiebungen und Rotationen.
+Adder (Addition/Subtraktion)
 
-Multiplexer-Block: Wählt das Ergebnis aus den anderen Blöcken und gibt es weiter.
+Shifter (Bitverschiebung/Rotation)
 
-Physisch sind die Blöcke als separate Bereiche auf dem Siliziumchip angeordnet. Jeder Block besteht aus Milliarden von Transistoren (MOSFETs), die in komplexen Logikgattern verbunden sind. Die Blöcke sind durch spezialisierte Busleitungen miteinander verbunden, die Signale und Daten übertragen.
+Multiplexer (wählt das Endergebnis)
 
-Die Transistorverbindungen sind so optimiert, dass schnelle Signalweiterleitung und geringe Verzögerungen garantiert sind. Durch Clock- und Power-Gating werden inaktive Blöcke stromlos geschaltet, um Energie zu sparen.
 
-Dieses Design erlaubt parallele Verarbeitung, effiziente Kommunikation auf Transistorebene und hohe Energieeffizienz. Die CPALU ist ein Kernbestandteil der Zpro1-CPU-Architektur.
+Jeder Block ist physisch einzeln aufgebaut und über Transistorleitungen direkt miteinander verbunden.
+
+Zusätzlich ist jeder Block in 4 kleinere Einheiten (Sub-Blöcke) unterteilt. Diese übernehmen Teilaufgaben, z. B.:
+
+Addierer rechnet Bits 0–7, 8–15 usw.
+
+Logik-Block hat eigene Einheiten für AND, OR, XOR, NOT
+
+
+So können Teile der ALU unabhängig oder parallel arbeiten.
+Nicht genutzte Teile gehen in den Leerlauf, um Strom zu sparen.
 
 
 4. Multi-Core Fusion (MCF) – Softwarebasierte Thread-Bündelung

@@ -152,4 +152,4 @@ Flexibel: Paralleles Multitasking mit BAT.
 
 Realisierbar: Vollständig umsetzbar mit aktueller 2025-Technologie.
 Entwickelt von mir mit 11 jahren.
-Diese Entwicklungsnotiz ist auch ein beweis dafür, das ich mit 11 jahren die Technelogie erfunden habe. Der Anfang des Projekts war in mitte bis ende 2024, und die neuste version 2.1.1 wurde am 13.Juli.2025 Entwickelt.
+Diese Entwicklungsnotiz ist auch ein beweis dafür, das ich mit 11 jahren die Technologie erfunden habe. Der Anfang des Projekts war in mitte bis ende 2024, und die neuste version 2.1.1 wurde am 13.Juli.2025 Entwickelt.

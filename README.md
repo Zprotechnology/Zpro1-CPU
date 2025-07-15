@@ -35,6 +35,7 @@ Gesteuert von Gruppierung der leistung: bei niedrige paralelisierungs/leistungsi
 TDFS darf nur Kerne von grupierten Cluster nehmen, um instabilität zu vermeiden.
 
 ALUs Problem behoben: jeder kern hat 4 ALUs. sobald VTDFS anfängt, ist es ein ALU pool, aus dem jeder Thread dynamisch nehmen kann. wenn jedoch ein thread zu wenig ALUs kriegt, wird der sofort deaktiviert, bis er wieder genug hat, um keine FPS drops zu sehen. der noch aktive thread arbeitet dann mit allen ALUs, die er bereitgestellt hat, mitbezogen die von dem deaktivierten Thread, um fast die gleiche leistung zu erziehlen.
+Wie Virtuelle Threads die stärke von z.b. ALU bekommt, geht das so: der ALU ist mit der CPU physisch verbunden, und einer von 2 TDFS Threads nutzt zb diesen ALU. Die 2 threads haben wie gesagt 4 ALUs zur Verfügung.
 
 Ermöglicht fein abgestimmtes Multitasking mit minimalem Overhead.
 
@@ -163,4 +164,4 @@ Flexibel: Paralleles Multitasking mit BAT.
 
 Realisierbar: Vollständig umsetzbar mit aktueller 2025-Technologie.
 Entwickelt von mir mit 11 jahren.
-Diese Entwicklungsnotiz ist auch ein beweis dafür, das ich mit 11 jahren die Technologie erfunden habe. Der Anfang des Projekts war in mitte bis ende 2024, und die neuste version 2.1.1 wurde am 13.Juli.2025 Entwickelt.
+Diese Entwicklungsnotiz ist auch ein beweis dafür, das ich mit 11 jahren die Technologie erfunden habe. Der Anfang des Projekts war in mitte bis ende 2024, und die neuste version 2.1.3.

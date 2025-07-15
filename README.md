@@ -45,7 +45,25 @@ Das ist so, weil ein thread mit der vollen Kern leistung geteilt wird, in fälle
 Für Virtuelle Thread teilung werden die VTs (Virtuall Threads) angepasst, damit keine probleme/Konflikte geschehen.
 Das macht man, indem man alle threads vollständig virtualisiert.
 
-3. Multi-Core Fusion (MCF) – Softwarebasierte Thread-Bündelung
+3. CPALU – Connected Parallel ALU
+Die CPALU ist eine modulare ALU-Architektur für die Zpro1-CPU, aufgeteilt in vier physische Funktionsblöcke:
+
+Logik-Block: Führt logische Operationen (AND, OR, XOR, NOT) durch.
+
+Addier-Block: Führt Addition und Subtraktion mit kaskadierten Volladdierern aus.
+
+Shifter-Block: Verantwortlich für Bitverschiebungen und Rotationen.
+
+Multiplexer-Block: Wählt das Ergebnis aus den anderen Blöcken und gibt es weiter.
+
+Physisch sind die Blöcke als separate Bereiche auf dem Siliziumchip angeordnet. Jeder Block besteht aus Milliarden von Transistoren (MOSFETs), die in komplexen Logikgattern verbunden sind. Die Blöcke sind durch spezialisierte Busleitungen miteinander verbunden, die Signale und Daten übertragen.
+
+Die Transistorverbindungen sind so optimiert, dass schnelle Signalweiterleitung und geringe Verzögerungen garantiert sind. Durch Clock- und Power-Gating werden inaktive Blöcke stromlos geschaltet, um Energie zu sparen.
+
+Dieses Design erlaubt parallele Verarbeitung, effiziente Kommunikation auf Transistorebene und hohe Energieeffizienz. Die CPALU ist ein Kernbestandteil der Zpro1-CPU-Architektur.
+
+
+4. Multi-Core Fusion (MCF) – Softwarebasierte Thread-Bündelung
 
 Nimmt 2 bis 4 virtuelle Threads aus TDFS und gruppiert sie als einen logischen „Superkern“. Die threads Arbeiten dann zusammen, und werden eine anforderung gegeben, hoch in taktraten zu arbeiten, weil sich MCF nur in fällen aktiviert, wo viel leistung gebraucht wird. dies kann passieren, indem die MCF kerne/threads eine höhere grenze der niedrigsten taktrate gestellt wird. Zb normale grenze 300mhz, mit mcf Kernen aber dann zb 1000. Das war ein Beispiel.
 
@@ -59,9 +77,9 @@ Realistisch und energieeffizient, ohne thermische Probleme.
 
 ---
 
-4. Cache-System mit integriertem L1.5-Fusion-Cache
+5. Cache-System mit integriertem L4-Fusion-Cache
 
-L1.5 -Fusion-Cache ist zwischen dem L1-L2 Cache-Bereich integriert.
+L4 -Fusion-Cache ist zwischen dem L1-L2 Cache-Bereich Physisch integriert.
 
 Spezieller Cache-Bereich für schnelle Kommunikation bei Fusion.
 
@@ -74,7 +92,7 @@ Verbessert Cache-Kohärenz und Zugriffszeiten.
 
 ---
 
-5. Background App Thread (BAT)
+6. Background App Thread (BAT)
 
 TDFS ermöglicht parallele Verarbeitung von Vordergrund- und Hintergrundaufgaben auf demselben/mehreren Kern/en. Beispielsweise wenn man eine app nutzt, und im hintergrund eine läuft.
 ---

@@ -1,6 +1,6 @@
 Bei Fragen, Problemen oder Kommentare bitte unter Issues oder bei Kommentare. Danke.
 
-🔷 Zpro1 v2.1.1– Moderne Mobile CPU-Architektur (2025)
+🔷 Zpro1 v2.1.2– Moderne Mobile CPU-Architektur (2025)
 
 Zpro1 v2 ist eine hochmoderne, realistisch umsetzbare CPU-Architektur für Smartphones und mobile Geräte, die Leistung, Effizienz und Systemintelligenz optimal verbindet. Sie basiert auf 12 physischen Kernen, innovativen Software-Fusionstechniken und einer tief integrierten NPU-Steuerung.
 
@@ -23,16 +23,18 @@ Zpro1 v2 ist eine hochmoderne, realistisch umsetzbare CPU-Architektur für Smart
 
 ---
 
-2. Thread Duplicating and Fusion System (TDFS)
+2. Virtuall Thread Duplicating and Fusion System (VTDFS)
 !!!Funktioniert vollständig im Kernel!!!
 
 Jeder Kern kann sich dynamisch in 2 virtuelle Threads aufteilen.
 
 Threads bearbeiten unterschiedliche Aufgaben. TDFS aktiviert sich nur in fällen, wo viel paralelisierung gebraucht wird, oder viel Singelcore leistung gebraucht wird. dafür wird MCF verwendet.
 
-Bietet SMT-ähnliche Vorteile, gesteuert von Gruppierung der leistung. bei niedrige paralelisierungs/leistungsintensive zb apps wird es minimal bis garnicht aktiviert. bei mittleren wird es im mittleren modus aktiv, und bei hohen in hohen logisch gesehen.
+Gesteuert von Gruppierung der leistung: bei niedrige paralelisierungs/leistungsintensive zb apps wird es minimal bis garnicht aktiviert. bei mittleren wird es im mittleren modus aktiv, und bei hohen im hohen modus.
 
 TDFS darf nur Kerne von grupierten Cluster nehmen, um instabilität zu vermeiden.
+
+ALUs Problem behoben: jeder kern hat 4 ALUs. sobald VTDFS anfängt, ist es ein ALU pool, aus dem jeder Thread dynamisch nehmen kann. wenn jedoch ein thread zu wenig ALUs kriegt, wird der sofort deaktiviert, bis er wieder genug hat, um keine FPS drops zu sehen. der noch aktive thread arbeitet dann mit allen ALUs, die er bereitgestellt hat, mitbezogen die von dem deaktivierten Thread, um fast die gleiche leistung zu erziehlen.
 
 Ermöglicht fein abgestimmtes Multitasking mit minimalem Overhead.
 
@@ -40,9 +42,8 @@ Wie funktioniert die duplizierung der Threads?
 Der Kernel wird so angepasst, das sich ein Thread verdoppeln kann, indem es virtuell einen zweiten erstellt, der aber dann die hälfte leistung des eigentlichen Threads nimmt, das sie 50/50 leistung vom eigentlichen haben. daas geschieht, wenn viel paralelisierung gebraucht wird. siehe MCF für TDFS leistungssteigerung.
 Aber warum 50/50 leistung des eigentlichen Kerns?
 Das ist so, weil ein thread mit der vollen Kern leistung geteilt wird, in fällen, wo viel paralelisierung gebraucht wird.
-
-
----
+Für Virtuelle Thread teilung werden die VTs (Virtuall Threads) angepasst, damit keine probleme/Konflikte geschehen.
+Das macht man, indem man alle threads vollständig virtualisiert.
 
 3. Multi-Core Fusion (MCF) – Softwarebasierte Thread-Bündelung
 
@@ -90,23 +91,7 @@ Die CPU kann Temperaturen von einzelnen Kernen messen, und die leistungsverteilu
 
 ---
 
-7. Neural Processing Unit (NPU)
-
-Zentrale Steuerungseinheit für:
-
-Thread-Management (TDFS & MCF)
-
-Leistungsanpassung (FEA)
-
-Cache-Steuerung
-
-App-Klassifizierung (hoch, mittel, niedrig)
-
-
-
----
-
-8. Kühlsystem
+7. Kühlsystem
 
 Vapor chamber an der CPU und vapor chamber "straßen"" an die Ränder des Handys und von der cpu zu den rändern. 
 Keine mechanischen Lüfter, ideal für Smartphones.
@@ -115,7 +100,7 @@ Keine mechanischen Lüfter, ideal für Smartphones.
 
 ---
 
-9. GPU- Steuerungs System:
+8. GPU- Steuerungs System:
 
 Rendering-Reihenfolge:
 
@@ -136,11 +121,11 @@ Fließende Grafikleistung auch bei anspruchsvollen Spielen.
 
 
 
-Wie kann man es ins Kernel einfügen? 
+9. Wie kann man es ins Kernel einfügen? 
 Spezieller code wird zuerst für TDFS geschrieben (bei den steuerungs Dateien geschrieben bei Github), und ist dann eine erweiterung der thread steuerung. Die thread steuerung davor wird dann auch optimiert für TDFS, damit sie optimal zusammen arbeiten können.
 ---
 
-11. Zusammenfassung und Vorteile
+10. Zusammenfassung und Vorteile
 
 Innovativ: Softwarebasierte Fusion (MCF) und dynamisches Thread-Management (TDFS).
 

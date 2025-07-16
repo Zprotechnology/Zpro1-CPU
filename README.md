@@ -1,8 +1,8 @@
 Bei Fragen, Problemen oder Kommentare bitte unter Issues oder bei Kommentare. Danke.
 
-🔷 Zpro1 v2.1.2– Moderne Mobile CPU-Architektur (2025)
+🔷 Zpro1 v2.2– Moderne Mobile CPU-Architektur (2025)
 
-Zpro1 v2 ist eine hochmoderne, realistisch umsetzbare CPU-Architektur für Smartphones und mobile Geräte, die Leistung, Effizienz und Systemintelligenz optimal verbindet. Sie basiert auf 12 physischen Kernen, innovativen Software-Fusionstechniken und einer tief integrierten NPU-Steuerung.
+Zpro1 v2 ist eine hochmoderne, realistisch umsetzbare CPU-Architektur für Smartphones und mobile Geräte, die Leistung, Effizienz und Systemintelligenz optimal verbindet. Sie basiert auf 12 physischen Kernen, innovativen Software-Fusionstechniken und einer tief integrierten Decoder-Steuerung.
 
 
 ---
@@ -65,14 +65,19 @@ Zusätzlich ist jeder Block in 4 kleinere Einheiten (Sub-Blöcke) unterteilt. Di
 
 Addierer rechnet Bits 0–7, 8–15 usw.
 
-Logik-Block hat eigene Einheiten für AND, OR, XOR, NOT
-
+Logik-Block hat eigene Einheiten für AND, OR, XOR,
 
 So können Teile der ALU unabhängig oder parallel arbeiten.
 Nicht genutzte Teile gehen in den Leerlauf, um Strom zu sparen.
 
 
-4. Multi-Core Fusion (MCF) – Softwarebasierte Thread-Bündelung
+4. VTALU Technologie
+
+Jeder CPU-Kern kann bis zu 4 virtuelle Threads (VTs) erzeugen, die an die MCF-Virtuell-ALU Einheit (virtuell) geschickt werden. Dort werden diese VTs zu virtuellen ALUs (VTALUs) organisiert, die parallel an unterschiedlichen Teilen einer Aufgabe arbeiten. Die Arbeit wird in 2 bis 4 Threads aufgeteilt, die synchronisiert laufen: Jeder Thread bearbeitet einen Teil der Aufgabe und wartet, bis alle fertig sind, bevor das Ergebnis zusammengeführt wird. Die Anzahl der aktiven VTs passt sich dynamisch an die aktuelle Leistungslast an, sodass Ressourcen effizient genutzt und Energie gespart werden. Das bedeutet, wenn nur zb 2 VTALU Threads für das System benötigt wird, werden dann nur 2 benutzt.
+
+
+
+5. Multi-Core Fusion (MCF) – Softwarebasierte Thread-Bündelung
 
 Nimmt 2 bis 4 virtuelle Threads aus TDFS und gruppiert sie als einen logischen „Superkern“. Die threads Arbeiten dann zusammen, und werden eine anforderung gegeben, hoch in taktraten zu arbeiten, weil sich MCF nur in fällen aktiviert, wo viel leistung gebraucht wird. dies kann passieren, indem die MCF kerne/threads eine höhere grenze der niedrigsten taktrate gestellt wird. Zb normale grenze 300mhz, mit mcf Kernen aber dann zb 1000. Das war ein Beispiel.
 
@@ -86,27 +91,27 @@ Realistisch und energieeffizient, ohne thermische Probleme.
 
 ---
 
-5. Cache-System mit integriertem L4-Fusion-Cache
+6. Cache-System mit integriertem L4-Fusion-Cache
 
-L4 -Fusion-Cache ist zwischen dem L1-L2 Cache-Bereich Physisch integriert.
+L4 -Fusion-Cache ist zwischen dem L1-L2 Cache-Bereich hinter den zwei L1 und L2 Physisch integriert.
 
 Spezieller Cache-Bereich für schnelle Kommunikation bei Fusion.
 
 L1 & L2 bleiben aktiv; MCF-Threads dürfen aber nur den L1.5-cache nutzen.
 
 Verbessert Cache-Kohärenz und Zugriffszeiten.
-!!!Diese Cache ist außerdem im Kernel!!!
+Diese Cache ist Physisch.
 
 
 
 ---
 
-6. Background App Thread (BAT)
+7. Background App Thread (BAT)
 
-TDFS ermöglicht parallele Verarbeitung von Vordergrund- und Hintergrundaufgaben auf demselben/mehreren Kern/en. Beispielsweise wenn man eine app nutzt, und im hintergrund eine läuft.
+TDFS BAT ermöglicht parallele Verarbeitung von Vordergrund- und Hintergrundaufgaben auf demselben/mehreren Kern/en. Beispielsweise wenn man eine app nutzt, und im hintergrund eine läuft.
 ---
 
-6. Fast Efficient Architecture (FEA)
+8. Fast Efficient Architecture (FEA)
 
 Dynamische Abschaltung oder Drosselung von Kernen bei hoher Last (>8W).
 
@@ -116,9 +121,10 @@ Die CPU kann Temperaturen von einzelnen Kernen messen, und die leistungsverteilu
 
 
 
+
 ---
 
-7. Kühlsystem
+9. Kühlsystem
 
 Vapor chamber an der CPU und vapor chamber "straßen"" an die Ränder des Handys und von der cpu zu den rändern. 
 Keine mechanischen Lüfter, ideal für Smartphones.
@@ -127,7 +133,7 @@ Keine mechanischen Lüfter, ideal für Smartphones.
 
 ---
 
-8. GPU- Steuerungs System:
+10. GPU- Steuerungs System:
 
 Rendering-Reihenfolge:
 
@@ -140,19 +146,11 @@ Rendering-Reihenfolge:
 3. Farbverarbeitung
 
 
-
-Fließende Grafikleistung auch bei anspruchsvollen Spielen.
-
-
-
-
-
-
 9. Wie kann man es ins Kernel einfügen? 
 Spezieller code wird zuerst für TDFS geschrieben (bei den steuerungs Dateien geschrieben bei Github), und ist dann eine erweiterung der thread steuerung. Die thread steuerung davor wird dann auch optimiert für TDFS, damit sie optimal zusammen arbeiten können.
 ---
 
-10. Zusammenfassung und Vorteile
+11. Zusammenfassung und Vorteile
 
 Innovativ: Softwarebasierte Fusion (MCF) und dynamisches Thread-Management (TDFS).
 
@@ -164,4 +162,4 @@ Flexibel: Paralleles Multitasking mit BAT.
 
 Realisierbar: Vollständig umsetzbar mit aktueller 2025-Technologie.
 Entwickelt von mir mit 11 jahren.
-Diese Entwicklungsnotiz ist auch ein beweis dafür, das ich mit 11 jahren die Technologie erfunden habe. Der Anfang des Projekts war in mitte bis ende 2024, und die neuste version 2.1.3.
+Diese Entwicklungsnotiz ist auch ein beweis dafür, das ich mit 11 jahren die Technologie erfunden habe. Der Anfang des Projekts war in mitte bis ende 2024, und die neuste version 2.1.1 wurde am 13.Juli.2025 Entwickelt.

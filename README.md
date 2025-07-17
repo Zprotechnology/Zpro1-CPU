@@ -71,11 +71,13 @@ So können Teile der ALU unabhängig oder parallel arbeiten.
 Nicht genutzte Teile gehen in den Leerlauf, um Strom zu sparen.
 
 
-4. VTALU Technologie
+4. VTALU (virtuall ALU) Technologie
 
-Jeder CPU-Kern kann bis zu 4 virtuelle Threads (VTs) erzeugen, die an die MCF-Virtuell-ALU Einheit (virtuell) geschickt werden. Dort werden diese VTs zu virtuellen ALUs (VTALUs) organisiert, die parallel an unterschiedlichen Teilen einer Aufgabe arbeiten. Die Arbeit wird in 2 bis 4 Threads aufgeteilt, die synchronisiert laufen: Jeder Thread bearbeitet einen Teil der Aufgabe und wartet, bis alle fertig sind, bevor das Ergebnis zusammengeführt wird. Die Anzahl der aktiven VTs passt sich dynamisch an die aktuelle Leistungslast an, sodass Ressourcen effizient genutzt und Energie gespart werden. Das bedeutet, wenn nur zb 2 VTALU Threads für das System benötigt wird, werden dann nur 2 benutzt.
+Jeder CPU-Kern kann wenn gebraucht bis zu 4 virtuelle Threads (VTs) erzeugen, die an die MCF-Virtuell-ALU Einheit (virtuell) geschickt werden. Dort werden diese VTs zu virtuellen ALUs (VTALUs) gruppiert, die parallel an unterschiedlichen Teilen einer Aufgabe arbeiten. Die Arbeit wird in 2 bis 4 Threads aufgeteilt, die synchronisiert laufen: Jeder Thread bearbeitet zb ein Viertel Teil der Aufgabe und wartet, bis alle fertig sind, bevor das Ergebnis zusammengeführt wird. Die Anzahl der aktiven VTs passt sich dynamisch an die aktuelle Leistungslast an, sodass Ressourcen effizient genutzt und Energie gespart werden. Das bedeutet, wenn nur zb 2 VTALU Threads für das System benötigt wird, werden dann nur 2 benutzt.
 
-
+MERKEN:
+VTALU wird aber nur in fällen aktiviert, wo zu viele ALUs für Physisch benutzt werden müssen, und deswegen wird dann die CPU leistung dann etwas schwächer, aber die ALU leistung stärker.
+Außerdem hat ein VTALU nicht die ganz volle Leistung eines Physischen ALUs, aber ist auch nicht viel schwächer. vielleicht hat ein VTALU 80-90% der leistung von einer Physischen ALU.
 
 5. Multi-Core Fusion (MCF) – Softwarebasierte Thread-Bündelung
 

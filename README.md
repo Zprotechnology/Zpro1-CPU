@@ -120,7 +120,7 @@ Er ist direkt über einen Adressbus mit der CPU verbunden.
 
 Der VTTU hat 10 Sub-Blöcke, die jeweils viele VTT-Gruppen managen (100.000 Gruppen mit je 20 VTTs).
 
-Jeder Sub-Block hat eigene physische Transistoren, deren Verhalten auf die virtuellen Transistoren übertragen wird, indem das Verhalten auf 2 mio VTTs zusammen in einer Sub gruppe skalliert wird — so funktionieren die VTTs wie echte Transistoren, nur virtuell und parallel.
+Jeder Sub-Block hat eigene physische Transistoren, deren Verhalten auf die virtuellen Transistoren übertragen wird, indem das Verhalten auf 2 mio VTTs zusammen in einer Sub gruppe skalliert wird. jeder sub block hat laut berechnungen 100-200 mio Physische Transistoren— so funktionieren die VTTs wie echte Transistoren, nur virtuell und parallel.
 
 Das ermöglicht der CPU, viele Schaltvorgänge gleichzeitig zu steuern und dadurch die Leistung stark zu steigern.
 

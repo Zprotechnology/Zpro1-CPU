@@ -79,6 +79,8 @@ MERKEN:
 VTALU wird aber nur in fällen aktiviert, wo zu viele ALUs für Physisch benutzt werden müssen, und deswegen wird dann die CPU leistung dann etwas schwächer, aber die ALU leistung stärker.
 Außerdem hat ein VTALU nicht die ganz volle Leistung eines Physischen ALUs, aber ist auch nicht viel schwächer. vielleicht hat ein VTALU 80-90% der leistung von einer Physischen ALU. VTDFS ist auch für die paralelisierung der CPU eigentlich da, also ist VTALU nur manchmal in fällen wo gebraucht aktiv. VTALUs nutzen auch die leistung eines VThreads von VTDFS.
 
+
+
 5. Multi-Core Fusion (MCF) – Softwarebasierte Thread-Bündelung
 
 Nimmt 2 bis 4 virtuelle Threads aus TDFS und gruppiert sie als einen logischen „Superkern“. Die threads Arbeiten dann zusammen, und werden eine anforderung gegeben, hoch in taktraten zu arbeiten, weil sich MCF nur in fällen aktiviert, wo viel leistung gebraucht wird. dies kann passieren, indem die MCF kerne/threads eine höhere grenze der niedrigsten taktrate gestellt wird. Zb normale grenze 300mhz, mit mcf Kernen aber dann zb 1000. Das war ein Beispiel.
@@ -106,7 +108,26 @@ Diese Cache ist Physisch.
 
 
 
+
 ---
+7.VTTs (Virtual Transistors)
+VTTs sind virtuelle Transistoren — sie verhalten sich wie echte Transistoren mit Ein- und Ausgang (Input/Output) und können 1 oder 0 Transistoren nacharmen.
+Der Unterschied: VTTs haben keinen echten Stromfluss, sie existieren nur softwareseitig.
+
+VTTU (Virtual Transistor Unit)
+VTTU ist ein spezieller Chip für die hilfe einer CPU, der eine Millionen von VTT gruppen steuert. Eine gruppe hat gleich 20 VTTs.
+Er ist direkt über einen Adressbus mit der CPU verbunden.
+
+Der VTTU hat 10 Sub-Blöcke, die jeweils viele VTT-Gruppen managen (100.000 Gruppen mit je 20 VTTs).
+
+Jeder Sub-Block hat eigene physische Transistoren, deren Verhalten auf die virtuellen Transistoren übertragen wird, indem das Verhalten auf 2 mio VTTs zusammen in einer Sub gruppe skalliert wird — so funktionieren die VTTs wie echte Transistoren, nur virtuell und parallel.
+
+Das ermöglicht der CPU, viele Schaltvorgänge gleichzeitig zu steuern und dadurch die Leistung stark zu steigern.
+
+
+
+
+
 
 7. Background App Thread (BAT)
 

@@ -1,6 +1,6 @@
 Bei Fragen, Problemen oder Kommentare bitte unter Issues oder bei Kommentare. Danke.
 
-🔷 Zpro1 v2.6– Moderne Mobile CPU-Architektur (2025)
+🔷 Zpro1 v2.2– Moderne Mobile CPU-Architektur (2025)
 
 Zpro1 v2 ist eine hochmoderne, realistisch umsetzbare CPU-Architektur für Smartphones und mobile Geräte, die Leistung, Effizienz und Systemintelligenz optimal verbindet. Sie basiert auf 12 physischen Kernen, innovativen Software-Fusionstechniken und einer tief integrierten Decoder-Steuerung.
 
@@ -105,24 +105,6 @@ L1 & L2 bleiben aktiv; MCF-Threads dürfen aber nur den L1.5-cache nutzen.
 
 Verbessert Cache-Kohärenz und Zugriffszeiten.
 Diese Cache ist Physisch.
-
-
-
-
----
-7.VTTs (Virtual Transistors)
-VTTs sind virtuelle Transistoren — sie verhalten sich wie echte Transistoren mit Ein- und Ausgang (Input/Output) und können 1 oder 0 Transistoren nacharmen.
-Der Unterschied: VTTs haben keinen echten Stromfluss, sie existieren nur softwareseitig.
-
-VTTU (Virtual Transistor Unit)
-VTTU ist ein spezieller Chip für die hilfe einer CPU, der eine Millionen von VTT gruppen steuert. Eine gruppe hat gleich 20 VTTs.
-Er ist direkt über einen Adressbus mit der CPU verbunden.
-
-Der VTTU hat 10 Sub-Blöcke, die jeweils viele VTT-Gruppen managen (100.000 Gruppen mit je 20 VTTs).
-
-Jeder Sub-Block hat eigene physische Transistoren, deren Verhalten auf die virtuellen Transistoren übertragen wird, indem das Verhalten auf 2 mio VTTs zusammen in einer Sub gruppe skalliert wird. jeder sub block hat laut berechnungen 100-200 mio Physische Transistoren— so funktionieren die VTTs wie echte Transistoren, nur virtuell und parallel.
-
-Das ermöglicht der CPU, viele Schaltvorgänge gleichzeitig zu steuern und dadurch die Leistung stark zu steigern.
 
 
 

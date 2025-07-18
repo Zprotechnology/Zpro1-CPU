@@ -92,10 +92,40 @@ Erhöht die Single-Core-Leistung.
 Realistisch und energieeffizient, ohne thermische Probleme.
 
 
+6. Core Spannungs Anpassung (CSA)
+CSA ist ein intelligentes System zur dynamischen Anpassung der Kernspannung und -taktung in der Zpro1-CPU. Es sorgt für eine optimale Balance zwischen Leistung, Energieverbrauch und thermischem Management.
+
+Funktionsweise:
+Im ruhigen Modus (Idle oder leichte Apps/Spiele):
+CSA passt die Spannung und den Takt auf Cluster-Ebene an — einzelne Cluster können hoch- oder runtergespannt werden, je nachdem wie viel Leistung gerade benötigt wird.
+
+Im mittleren und hohen Modus:
+CSA passt Spannung und Takt auf einzelner Kern-Ebene an, um fein abgestimmte Leistungskontrolle zu ermöglichen.
+
+Wichtige CSA-Regeln:
+Keine Isolation:
+In der Spannungsanpassung dürfen Kerne nicht „alleine“ hochgetaktet sein, während andere Kerne im selben Cluster im Idle-Modus sind.
+
+Lastverteilung im mittleren Modus:
+Mindestens mehrere Kerne in einem Cluster haben eine Last von mindestens 20 %. Einige Kerne dürfen bis zu 80 % hochgetaktet werden, aber nicht mehr.
+
+Überschreitung der 80 %-Grenze:
+Sobald einzelne Kerne über 80 % Last laufen, wird das Multi-Core Fusion (MCF) aktiviert, um die Kerne zu bündeln und die Leistung als „Superkern“ effizient zu steigern.
+
+Vorteile von CSA:
+Verhindert thermische Hotspots durch gleichmäßige Last- und Spannungsverteilung.
+
+Spart Energie durch bedarfsgerechte Spannung und Takt.
+
+Erhöht die Stabilität und Lebensdauer der CPU.
+
+Unterstützt optimal die Leistungsschübe durch MCF, ohne dass einzelne Kerne unnötig überhitzen.
+
+
 
 ---
 
-6. Cache-System mit integriertem L4-Fusion-Cache
+7. Cache-System mit integriertem L4-Fusion-Cache
 
 L4 -Fusion-Cache ist zwischen dem L1-L2 Cache-Bereich hinter den zwei L1 und L2 Physisch integriert.
 
@@ -111,7 +141,7 @@ Diese Cache ist Physisch.
 
 
 
-7. Background App Thread (BAT)
+8. Background App Thread (BAT)
 
 TDFS BAT ermöglicht parallele Verarbeitung von Vordergrund- und Hintergrundaufgaben auf demselben/mehreren Kern/en. Beispielsweise wenn man eine app nutzt, und im hintergrund eine läuft.
 ---
@@ -151,7 +181,7 @@ Rendering-Reihenfolge:
 3. Farbverarbeitung
 
 
-9. Wie kann man es ins Kernel einfügen? 
+10. Wie kann man es ins Kernel einfügen? 
 Spezieller code wird zuerst für TDFS geschrieben (bei den steuerungs Dateien geschrieben bei Github), und ist dann eine erweiterung der thread steuerung. Die thread steuerung davor wird dann auch optimiert für TDFS, damit sie optimal zusammen arbeiten können.
 ---
 

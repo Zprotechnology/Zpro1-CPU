@@ -1,6 +1,6 @@
 Bei Fragen, Problemen oder Kommentare bitte unter Issues oder bei Kommentare. Danke.
 
-🔷 Zpro1 v2.4– Moderne Mobile CPU-Architektur (2025)
+🔷 Zpro1 v2.5– Moderne Mobile CPU-Architektur (2025)
 
 Zpro1 v2 ist eine hochmoderne, realistisch umsetzbare CPU-Architektur für Smartphones und mobile Geräte, die Leistung, Effizienz und Systemintelligenz optimal verbindet. Sie basiert auf 12 physischen Kernen, innovativen Software-Fusionstechniken und einer tief integrierten Decoder-Steuerung.
 
@@ -86,6 +86,8 @@ Außerdem hat ein VTALU nicht die ganz volle Leistung eines Physischen ALUs, abe
 Nimmt 2 bis 4 virtuelle Threads aus TDFS und gruppiert sie als einen logischen „Superkern“. Die threads Arbeiten dann zusammen, und werden eine anforderung gegeben, hoch in taktraten zu arbeiten, weil sich MCF nur in fällen aktiviert, wo viel leistung gebraucht wird. dies kann passieren, indem die MCF kerne/threads eine höhere grenze der niedrigsten taktrate gestellt wird. Zb normale grenze 300mhz, mit mcf Kernen aber dann zb 1000. Das war ein Beispiel.
 
 Das Betriebssystem sieht diese Gruppe als einen einzelnen Kern. Es täuscht das System nicht, sondern das System packt sie in einer einkern gruppe rein, wo sie als einen benutzt werden.
+
+Info: ES kann nur einen Supercore geben.
 
 Erhöht die Single-Core-Leistung.
 

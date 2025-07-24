@@ -128,23 +128,12 @@ Unterstützt optimal die Leistungsschübe durch MCF, ohne dass einzelne Kerne un
 
 ---
 
-7. Cache-System mit integriertem L4-Fusion-Cache
+7. Cache-System mit virtuell integriertem AIF (Actuell Information Fetcher) -Cache (neu!)
 
-L4 -Fusion-Cache ist zwischen dem L1-L2 Cache-Bereich hinter den zwei L1 und L2 Physisch integriert.
-
-Spezieller Cache-Bereich für schnelle Kommunikation bei Fusion.
-
-L1 & L2 bleiben aktiv; MCF-Threads dürfen aber nur den L1.5-cache nutzen.
-
-Verbessert Cache-Kohärenz und Zugriffszeiten.
-Diese Cache ist Physisch.
+siehe beschreibung bei MCF*.
 
 
-
-
-
-
-8. Background App Thread (BAT)
+9. Background App Thread (BAT)
 
 TDFS BAT ermöglicht parallele Verarbeitung von Vordergrund- und Hintergrundaufgaben auf demselben/mehreren Kern/en. Beispielsweise wenn man eine app nutzt, und im hintergrund eine läuft.
 ---

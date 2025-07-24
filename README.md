@@ -91,6 +91,9 @@ Erhöht die Single-Core-Leistung.
 
 Realistisch und energieeffizient, ohne thermische Probleme.
 
+Cache Kohärenz Problem gelöst (neues update!):
+Sobald VTDFS oder MCF, algemein virtuelle Threads benutzt werden, wird der sogenannte Actuell Information fetcher (AIF) aktiv. Der fetcht immer aktuelle informationen raus, und stellt sie für alle VTs aus. Jeder VT muss dann nach jeder berechnung immer in diesem Virtuellen AIF schauen, um aktuelle infos zu sammeln.
+
 
 6. Core Spannungs Anpassung (CSA)
 CSA ist ein intelligentes System zur dynamischen Anpassung der Kernspannung und -taktung in der Zpro1-CPU. Es sorgt für eine optimale Balance zwischen Leistung, Energieverbrauch und thermischem Management.

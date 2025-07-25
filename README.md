@@ -42,9 +42,7 @@ Ermöglicht fein abgestimmtes Multitasking mit minimalem Overhead.
 Wie funktioniert die duplizierung der Threads?
 Der Kernel wird so angepasst, das sich ein Thread verdoppeln kann, indem es virtuell einen zweiten erstellt, der aber dann die hälfte leistung des eigentlichen Threads nimmt, das sie 50/50 leistung vom eigentlichen haben. daas geschieht, wenn viel paralelisierung gebraucht wird. siehe MCF für TDFS leistungssteigerung.
 Aber warum 50/50 leistung des eigentlichen Kerns?
-Das ist so, weil ein thread mit der vollen Kern leistung geteilt wird, in fällen, wo viel paralelisierung gebraucht wird.
-Für Virtuelle Thread teilung werden die VTs (Virtuall Threads) angepasst, damit keine probleme/Konflikte geschehen.
-Das macht man, indem man alle threads vollständig virtualisiert.
+wenn ein weiterer VT (Virtuall Thread) für einen Kern erstellt wird, ist es nicht wie Hyperthreading, indem ein kern für 2 arbeitet, sondern ein bischen anders. Der zweite VT nutzt die hälfte leistung des anderen VTs, indem die GHz leistung von dem ersten Thread virtuell zum anderen halbiert wird, was es ermöglicht, das z.b. ein kern mit 3.5 Ghz gleich 2 Threads mit jeweils 1,75 Virtuell zugeteilte GHz.
 
 3. CPALU – Connected Parallel ALU
 
@@ -83,7 +81,7 @@ Außerdem hat ein VTALU nicht die ganz volle Leistung eines Physischen ALUs, abe
 
 5. Multi-Core Fusion (MCF) – Softwarebasierte Thread-Bündelung
 
-Nimmt 2 bis 4 virtuelle Threads aus TDFS und gruppiert sie als einen logischen „Superkern“. Die threads Arbeiten dann zusammen, und werden eine anforderung gegeben, hoch in taktraten zu arbeiten, weil sich MCF nur in fällen aktiviert, wo viel leistung gebraucht wird. dies kann passieren, indem die MCF kerne/threads eine höhere grenze der niedrigsten taktrate gestellt wird. Zb normale grenze 300mhz, mit mcf Kernen aber dann zb 1000. Das war ein Beispiel.
+MCF Nimmt 2 bis 4 virtuelle Threads aus TDFS und gruppiert sie als einen logischen „Superkern“. Die threads Arbeiten dann zusammen, und werden eine anforderung gegeben, hoch in taktraten zu arbeiten, weil sich MCF nur in fällen aktiviert, wo viel leistung gebraucht wird. dies kann passieren, indem die MCF kerne/threads eine höhere grenze der niedrigsten taktrate gestellt wird. Zb normale grenze 300mhz, mit mcf Kernen aber dann zb 1000. Das war ein Beispiel.
 
 Das Betriebssystem sieht diese Gruppe als einen einzelnen Kern. Es täuscht das System nicht, sondern das System packt sie in einer einkern gruppe rein, wo sie als einen benutzt werden.
 
@@ -94,7 +92,7 @@ Erhöht die Single-Core-Leistung.
 Realistisch und energieeffizient, ohne thermische Probleme.
 
 Cache Kohärenz Problem gelöst (neues update!):
-Sobald VTDFS oder MCF, algemein virtuelle Threads benutzt werden, wird der sogenannte Actuell Information fetcher (AIF) aktiv. Der fetcht immer aktuelle informationen raus, und stellt sie für alle VTs aus. Jeder VT muss dann nach jeder berechnung immer in diesem Virtuellen AIF schauen, um aktuelle infos zu sammeln.
+Sobald VTDFS oder MCF, algemein virtuelle Threads benutzt werden, wird der sogenannte Actuell Information fetcher (AIF) aktiv. Der fetcht immer aktuelle informationen raus, und stellt sie für alle VTs aus. Jeder VT muss dann nach jeder berechnung immer in diesem Virtuellen AIF schauen, um aktuelle infos zu sammeln. Er ist spezialisiert, Daten zu fetchen und preiszugeben, mehr macht er nicht.
 
 Aber was ist, wenn 2 apps MCF brauchen?
 Das wird gelöst, indem man den einen Supercore gibt, der mehr leistung braucht. Der andere kriegt VTDFS.

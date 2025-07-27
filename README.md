@@ -167,10 +167,11 @@ Keine mechanischen Lüfter, ideal für Smartphones.
 Die GPUs von mobilen geräten verfügen über hunderte von Shadereinheiten und "ALUs".
 Darf ich vorstellen: Zren X
 Zren X hat auch hunderte von Shadereinheiten, genauer gesagt 370, und hat 5 shader gruppen mit jeweils 74, hat jedoch die VSDS (Virtuall Shader Duplicating System) funktion.
-Diese funktion kann jeweilige gruppen, also dann alle 74 shader einheiten wie VTDFS teilen, funktioniert ähnlich wie VTDFS, nur auf schader und nicht einzelne Kerne, sondern von gruppen.
+Diese funktion kann jeweilige gruppen, also dann alle 74 shader einheiten wie VTDFS teilen, funktioniert ähnlich wie VTDFS, nur auf schader, und nicht einzelne Kerne, sondern von gruppen.
 es ist ähnlich wie SMT oder Hyperthreading, nur arbeitet nicht ein shader kern für zwei VSs (Virtuall Shaders), sondern der zweite für sich selbst, nur halt von leistung her angetrieben von einem shader Kern.
 Da jede shader gruppe sich "teilen" kann, hätte man theoretisch 740 shader einheiten.
-Damit aber möglichst kein Overhead wegen der teilung geschieht, ist es so, das bei der Branch prediction geschaut wird, ob wahrscheinlich was leistungsaufwendiges passiert. dann werdeen alle shader kerne, die gerade nicht genutzt werden, aufgefordert, bevor das grafikaufwendige geschieht, sich zu teilen. wenn es dann gerade dabei ist, grafikintensiv zu sein, werden auch die benutzten geteilt. dies ermöglicht ungefähr die hälfte Overhead, da die ungenutzten es nicht wirklich für die anwendung erzeugen können.
+Damit aber möglichst kein Overhead wegen der teilung geschieht, ist es so, das bei der Branch prediction geschaut wird, ob wahrscheinlich was leistungsaufwendiges passiert. Dann werden alle shader kerne, die gerade nicht genutzt werden, aufgefordert, bevor das grafikaufwendige geschieht, sich zu teilen. wenn es dann gerade dabei ist, grafikintensiv zu sein, werden auch die benutzten geteilt. dies ermöglicht ungefähr die hälfte Overhead, da die ungenutzten es nicht wirklich für die anwendung erzeugen können.
+
 
 
 10. Wie kann man es ins Kernel einfügen? 

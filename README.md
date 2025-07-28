@@ -1,6 +1,6 @@
 Bei Fragen, Problemen oder Kommentare bitte unter Issues oder bei Kommentare. Danke.
 
-🔷 Zpro1 v2.7– Moderne Mobile CPU-Architektur (2025)
+🔷 Zpro1 v2.7.8– Moderne Mobile CPU-Architektur (2025)
 
 Zpro1 v2 ist eine hochmoderne, realistisch umsetzbare CPU-Architektur für Smartphones und mobile Geräte, die Leistung, Effizienz und Systemintelligenz optimal verbindet. Sie basiert auf 12 physischen Kernen, innovativen Software-Fusionstechniken und einer tief integrierten Decoder-Steuerung.
 
@@ -154,10 +154,12 @@ Die CPU kann Temperaturen von einzelnen Kernen messen, und die leistungsverteilu
 
 ---
 
-9. Kühlsystem
-
-Vapor chamber an der CPU und vapor chamber "straßen"" an die Ränder des Handys und von der cpu zu den rändern. 
-Keine mechanischen Lüfter, ideal für Smartphones.
+9. Kühlsystem (Update)
+tief im system, wird ein Hitzewächter hinzugefügt, und zwar im Kernel.
+Dieser virtuelle Hitzewächter heißt DOCU (Dynamic Overall Cooling Unit).
+Der hat die Informationen von Temperaturen des Akkus, CPU und anderen Hitzentwickelnden Komponennten.
+Er sammelt dann diese Ergebnisse, analysiert sie, und passt die leistungsverteilung an. Wenn beispielsweise der Akku c.a. 35-37°C ist, während die CPU Kühler ist, wird CSA (Core Spannungs Anpassung) die Information geschickt, hochbenutzte Kerne ehr abzutragen und dafür die effizienteren mittel-effizients Kerne zu nutzen.
+Dazu gibt es noch ein Vapor chamber über der CPU, die es wie andere Handys Kühlen.
 
 
 

@@ -168,11 +168,9 @@ Dazu gibt es noch ein Vapor chamber über der CPU, die es wie andere Handys Küh
 10. Zren X GPU (groß-update):
 Die GPUs von mobilen geräten verfügen über hunderte von Shadereinheiten und "ALUs".
 Darf ich vorstellen: Zren X
-Zren X hat auch hunderte von Shadereinheiten, genauer gesagt 370, und hat 5 shader gruppen mit jeweils 74, hat jedoch die VSDS (Virtuall Shader Duplicating System) funktion.
-Diese funktion kann jeweilige gruppen, also dann alle 74 shader einheiten wie VTDFS teilen, funktioniert ähnlich wie VTDFS, nur auf schader, und nicht einzelne Kerne, sondern von gruppen.
-es ist ähnlich wie SMT oder Hyperthreading, nur arbeitet nicht ein shader kern für zwei VSs (Virtuall Shaders), sondern der zweite für sich selbst, nur halt von leistung her angetrieben von einem shader Kern.
-Da jede shader gruppe sich "teilen" kann, hätte man theoretisch 740 shader einheiten.
-Damit aber möglichst kein Overhead wegen der teilung geschieht, ist es so, das bei der Branch prediction geschaut wird, ob wahrscheinlich was leistungsaufwendiges passiert. Dann werden alle shader kerne, die gerade nicht genutzt werden, aufgefordert, bevor das grafikaufwendige geschieht, sich zu teilen. wenn es dann gerade dabei ist, grafikintensiv zu sein, werden auch die benutzten geteilt. dies ermöglicht ungefähr die hälfte Overhead, da die ungenutzten es nicht wirklich für die anwendung erzeugen können.
+Zren X hat auch hunderte von Shadereinheiten, genauer gesagt 370, und hat 5 shader gruppen mit jeweils 74, hat jedoch die VFPU (Virtuall FPU) funktion.
+VFPU kann Dezimalberechnungen wie klasische FPUs berechnen, jedoch um den Shadereinheiten-effekt zu erhalten, teilt VFPU dezimalaufgaben in 2-4 teilen, um es möglichts effizient und schnell zu berechnen. Es nutzt aber keine In-Order executions, da es nicht nur eine VFPU ist, sondern insgesammt 200.
+JEDOCH: VFPU wird nur in Grafiknot wegen Leistungsmangel aktiviert. Es berechnet die Dezimal-berechnungen mit Virtuellen Kern Threads von VTDFS von einem Kern. 
 
 
 

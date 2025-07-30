@@ -1,6 +1,6 @@
 Bei Fragen, Problemen oder Kommentare bitte unter Issues oder bei Kommentare. Danke.
 
-🔷 Zpro1 v2.7.8– Moderne Mobile CPU-Architektur (2025)
+🔷 Zpro1 v2.8– Moderne Mobile CPU-Architektur (2025)
 
 Zpro1 v2 ist eine hochmoderne, realistisch umsetzbare CPU-Architektur für Smartphones und mobile Geräte, die Leistung, Effizienz und Systemintelligenz optimal verbindet. Sie basiert auf 12 physischen Kernen, innovativen Software-Fusionstechniken und einer tief integrierten Decoder-Steuerung.
 
@@ -171,6 +171,18 @@ Darf ich vorstellen: Zren X
 Zren X hat auch hunderte von Shadereinheiten, genauer gesagt 370, und hat 5 shader gruppen mit jeweils 74, hat jedoch die VFPU (Virtuall FPU) funktion.
 VFPU kann Dezimalberechnungen wie klasische FPUs berechnen, jedoch um den Shadereinheiten-effekt zu erhalten, teilt VFPU dezimalaufgaben in 2-4 teilen, um es möglichts effizient und schnell zu berechnen. Es nutzt aber keine In-Order executions, da es nicht nur eine VFPU ist, sondern insgesammt 200.
 JEDOCH: VFPU wird nur in Grafiknot wegen Leistungsmangel aktiviert. Es berechnet die Dezimal-berechnungen mit Virtuellen Kern Threads von VTDFS von einem Kern. 
+
+
+
+11. ZSB (Z Security Bunker) Security Engine (neu)
+ZSB ist eine Security engine, die diese Technologien nutzt:
+
+BLE (Biometric Locker Engine):
+BLE kann festgelegte Biometrische physisch im ZSB speichern, die nicht mit der CPU verbunden ist, sondern mit einem SC (Security Connektor), der wiederrum mit der CPU verbunden ist. 
+Dieser SC bewacht zugriffe auf diesen Daten. Bei verdächtigem Verhalten wie ständige anfrage an daten in sekunden, zugriffsanfrage, ohne das der nutzer was geklickt hat und so weiter,
+blockiert er sofort die verbindung zum ZSB, und stellt dem nutzer ein Warnsignal auf, das gerät sofort zurückzusetzen oder Masnahmen einzugreifen, da das gerät und die Daten gefärdet sein könnten.
+
+12. 
 
 
 

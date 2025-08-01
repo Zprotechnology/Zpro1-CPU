@@ -7,7 +7,7 @@ Zpro1 v2 ist eine hochmoderne, realistisch umsetzbare CPU-Architektur für Smart
 
 ---
 
-1. Kernstruktur
+Kernstruktur:
 
 12 reale Kerne, in 4 Cluster aufgeteilt:
 
@@ -23,7 +23,7 @@ Zpro1 v2 ist eine hochmoderne, realistisch umsetzbare CPU-Architektur für Smart
 
 ---
 
-2. Virtuall Thread Duplicating and Fusion System (VTDFS)
+1. Virtuall Thread Duplicating and Fusion System (VTDFS)
 !!!Funktioniert vollständig im Kernel!!!
 
 Jeder Kern kann sich dynamisch in 2 virtuelle Threads aufteilen.
@@ -44,7 +44,7 @@ Der Kernel wird so angepasst, das sich ein Thread verdoppeln kann, indem es virt
 Aber warum 50/50 leistung des eigentlichen Kerns?
 wenn ein weiterer VT (Virtuall Thread) für einen Kern erstellt wird, ist es nicht wie Hyperthreading, indem ein kern für 2 arbeitet, sondern ein bischen anders. Der zweite VT nutzt die hälfte leistung des anderen VTs, indem die GHz leistung von dem ersten Thread virtuell zum anderen halbiert wird, was es ermöglicht, das z.b. ein kern mit 3.5 Ghz gleich 2 Threads mit jeweils 1,75 Virtuell zugeteilte GHz.
 
-3. CPALU – Connected Parallel ALU
+2. CPALU – Connected Parallel ALU
 
 Die CPALU ist eine moderne ALU-Architektur, die aus vier Hauptblöcken besteht:
 
@@ -69,7 +69,7 @@ So können Teile der ALU unabhängig oder parallel arbeiten.
 Nicht genutzte Teile gehen in den Leerlauf, um Strom zu sparen.
 
 
-4. VTALU (virtuall ALU) Technologie
+3. VTALU (virtuall ALU) Technologie
 
 Jeder CPU-Kern kann sich mit VTDFS wenn gebraucht(!!!) bis zu 4 virtuelle Threads (VTs) erzeugen, die an die MCF-Virtuell-ALU Einheit (virtuell) geschickt werden. Dort werden diese VTs zu virtuellen ALUs (VTALUs) gruppiert, die parallel an unterschiedlichen Teilen einer Aufgabe arbeiten. Die Arbeit wird in 2 bis 4 Threads aufgeteilt, die synchronisiert laufen: Jeder Thread bearbeitet zb ein Viertel Teil der Aufgabe und wartet, bis alle fertig sind, bevor das Ergebnis zusammengeführt wird. Die Anzahl der aktiven VTs passt sich dynamisch an die aktuelle Leistungslast an, sodass Ressourcen effizient genutzt und Energie gespart werden. Das bedeutet, wenn nur zb 2 VTALU Threads für das System benötigt wird, werden dann nur 2 benutzt.
 
@@ -79,7 +79,7 @@ Außerdem hat ein VTALU nicht die ganz volle Leistung eines Physischen ALUs, abe
 
 
 
-5. Multi-Core Fusion (MCF) – Softwarebasierte Thread-Bündelung
+4. Multi-Core Fusion (MCF) – Softwarebasierte Thread-Bündelung
 
 MCF Nimmt 2 bis 4 virtuelle Threads aus TDFS und gruppiert sie als einen logischen „Superkern“. Die threads Arbeiten dann zusammen, und werden eine anforderung gegeben, hoch in taktraten zu arbeiten, weil sich MCF nur in fällen aktiviert, wo viel leistung gebraucht wird. dies kann passieren, indem die MCF kerne/threads eine höhere grenze der niedrigsten taktrate gestellt wird. Zb normale grenze 300mhz, mit mcf Kernen aber dann zb 1000. Das war ein Beispiel.
 
@@ -98,7 +98,7 @@ Aber was ist, wenn 2 apps MCF brauchen?
 Das wird gelöst, indem man den einen Supercore gibt, der mehr leistung braucht. Der andere kriegt VTDFS.
 Und wenn beide gleiche leistung brauchen, wird random entschieden, wer MCF kriegt, der andere kriegt dann einfach VTDFS.
 
-6. Core Spannungs Anpassung (CSA)
+5. Core Spannungs Anpassung (CSA)
 CSA ist ein intelligentes System zur dynamischen Anpassung der Kernspannung und -taktung in der Zpro1-CPU. Es sorgt für eine optimale Balance zwischen Leistung, Energieverbrauch und thermischem Management.
 
 Funktionsweise:
@@ -131,12 +131,12 @@ Unterstützt optimal die Leistungsschübe durch MCF, ohne dass einzelne Kerne un
 
 ---
 
-7. Cache-System mit virtuell integriertem AIF (Actuell Information Fetcher) -Cache (neu!)
+6. Cache-System mit virtuell integriertem AIF (Actuell Information Fetcher) -Cache (neu!)
 
 siehe beschreibung bei MCF*.
 
 
-9. Background App Thread (BAT)
+7. Background App Thread (BAT)
 
 TDFS BAT ermöglicht parallele Verarbeitung von Vordergrund- und Hintergrundaufgaben auf demselben/mehreren Kern/en. Beispielsweise wenn man eine app nutzt, und im hintergrund eine läuft.
 ---
@@ -182,15 +182,13 @@ BLE kann festgelegte Biometrische physisch im ZSB speichern, die nicht mit der C
 Dieser SC bewacht zugriffe auf diesen Daten. Bei verdächtigem Verhalten wie ständige anfrage an daten in sekunden, zugriffsanfrage, ohne das der nutzer was geklickt hat und so weiter,
 blockiert er sofort die verbindung zum ZSB, und stellt dem nutzer ein Warnsignal auf, das gerät sofort zurückzusetzen oder Masnahmen einzugreifen, da das gerät und die Daten gefärdet sein könnten.
 
-12. 
 
 
-
-10. Wie kann man es ins Kernel einfügen? 
+12. Wie kann man es ins Kernel einfügen? 
 Spezieller code wird zuerst für TDFS geschrieben (bei den steuerungs Dateien geschrieben bei Github), und ist dann eine erweiterung der thread steuerung. Die thread steuerung davor wird dann auch optimiert für TDFS, damit sie optimal zusammen arbeiten können.
 ---
 
-11. Zusammenfassung und Vorteile
+13. Zusammenfassung und Vorteile
 
 Innovativ: Softwarebasierte Fusion (MCF) und dynamisches Thread-Management (TDFS).
 

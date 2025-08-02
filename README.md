@@ -81,7 +81,7 @@ Außerdem hat ein VTALU nicht die ganz volle Leistung eines Physischen ALUs, abe
 
 4. Multi-Core Fusion (MCF) (update) – Softwarebasierte Thread-Bündelung
 
-MCF Nimmt 4 bis 6 virtuelle paralelisierte Threads von VTDFS und gruppiert sie als einen logischen „Superkern“. Die threads Arbeiten dann zusammen, und werden eine anforderung gegeben, hoch in taktraten zu arbeiten, weil sich MCF nur in fällen aktiviert, wo viel leistung gebraucht wird. Dies kann passieren, indem die MCF Kerne/Khreads eine höhere grenze der niedrigsten taktrate gestellt wird. Zb normale grenze 300mhz, mit mcf Kernen aber dann zb 1000. Das war ein Beispiel.
+MCF Nimmt 4 bis 6 virtuelle paralelisierte Threads von VTDFS und gruppiert sie als einen logischen „Superkern“. Die threads Arbeiten dann zusammen, und werden eine anforderung gegeben, hoch in taktraten zu arbeiten, weil sich MCF nur in fällen aktiviert, wo viel leistung gebraucht wird. Dies kann passieren, indem die MCF Kerne/Threads eine höhere grenze der niedrigsten taktrate gestellt wird. Zb normale grenze 300mhz, mit mcf Kernen aber dann zb 1000. Das war ein Beispiel.
 
 Das Betriebssystem sieht diese Gruppe als einen einzelnen Kern. Es täuscht das System nicht, sondern das System packt sie in einer einkern gruppe rein, wo sie als einen benutzt werden.
 

@@ -79,13 +79,13 @@ Außerdem hat ein VTALU nicht die ganz volle Leistung eines Physischen ALUs, abe
 
 
 
-4. Multi-Core Fusion (MCF) – Softwarebasierte Thread-Bündelung
+4. Multi-Core Fusion (MCF) (update) – Softwarebasierte Thread-Bündelung
 
-MCF Nimmt 2 bis 4 virtuelle Threads aus TDFS und gruppiert sie als einen logischen „Superkern“. Die threads Arbeiten dann zusammen, und werden eine anforderung gegeben, hoch in taktraten zu arbeiten, weil sich MCF nur in fällen aktiviert, wo viel leistung gebraucht wird. dies kann passieren, indem die MCF kerne/threads eine höhere grenze der niedrigsten taktrate gestellt wird. Zb normale grenze 300mhz, mit mcf Kernen aber dann zb 1000. Das war ein Beispiel.
+MCF Nimmt 4 bis 6 virtuelle paralelisierte Threads von VTDFS und gruppiert sie als einen logischen „Superkern“. Die threads Arbeiten dann zusammen, und werden eine anforderung gegeben, hoch in taktraten zu arbeiten, weil sich MCF nur in fällen aktiviert, wo viel leistung gebraucht wird. Dies kann passieren, indem die MCF Kerne/Khreads eine höhere grenze der niedrigsten taktrate gestellt wird. Zb normale grenze 300mhz, mit mcf Kernen aber dann zb 1000. Das war ein Beispiel.
 
 Das Betriebssystem sieht diese Gruppe als einen einzelnen Kern. Es täuscht das System nicht, sondern das System packt sie in einer einkern gruppe rein, wo sie als einen benutzt werden.
 
-Info: ES kann nur einen Supercore geben.
+Info: Es kann nur einen Supercore geben.
 
 Erhöht die Single-Core-Leistung.
 
@@ -169,10 +169,8 @@ Dazu gibt es noch ein Vapor chamber über der CPU, die es wie andere Handys Küh
 Die GPUs von mobilen geräten verfügen über hunderte von Shadereinheiten und "ALUs".
 Darf ich vorstellen: Zren X
 Zren X hat auch hunderte von Shadereinheiten, genauer gesagt 370, und hat 5 shader gruppen mit jeweils 74, hat jedoch die VFPU (Virtuall FPU) funktion.
-VFPU kann Dezimalberechnungen wie klasische FPUs berechnen, jedoch um den Shadereinheiten-effekt zu erhalten, teilt VFPU dezimalaufgaben in 2-4 teilen, um es möglichts effizient und schnell zu berechnen. Es nutzt aber keine In-Order executions, da es nicht nur eine VFPU ist, sondern insgesammt 200.
+VFPU kann Dezimalberechnungen wie klasische FPUs berechnen, jedoch um den Shadereinheiten-effekt zu erhalten, teilt VFPU dezimalaufgaben in 2-4 teilen, um es möglichts effizient und schnell zu berechnen. Es nutzt aber keine In-Order executions, da es nicht nur eine VFPU ist, sondern insgesammt 200, die in teilen berechnen.
 JEDOCH: VFPU wird nur in Grafiknot wegen Leistungsmangel aktiviert. Es berechnet die Dezimal-berechnungen mit Virtuellen Kern Threads von VTDFS von einem Kern. 
-
-
 
 11. ZSB (Z Security Bunker) Security Engine (neu)
 ZSB ist eine Security engine, die diese Technologien nutzt:
@@ -183,9 +181,11 @@ Dieser SC bewacht zugriffe auf diesen Daten. Bei verdächtigem Verhalten wie st�
 blockiert er sofort die verbindung zum ZSB, und stellt dem nutzer ein Warnsignal auf, das gerät sofort zurückzusetzen oder Masnahmen einzugreifen, da das gerät und die Daten gefärdet sein könnten.
 
 
+12.
+
 
 12. Wie kann man es ins Kernel einfügen? 
-Spezieller code wird zuerst für TDFS geschrieben (bei den steuerungs Dateien geschrieben bei Github), und ist dann eine erweiterung der thread steuerung. Die thread steuerung davor wird dann auch optimiert für TDFS, damit sie optimal zusammen arbeiten können.
+Spezieller code wird zuerst für TDFS geschrieben ( Bei den steuerungs Dateien geschrieben in Github ), und ist dann eine erweiterung der Thread steuerung. Die thread steuerung davor wird dann auch optimiert für TDFS, damit sie optimal zusammen arbeiten können.
 ---
 
 13. Zusammenfassung und Vorteile

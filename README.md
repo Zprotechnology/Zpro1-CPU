@@ -1,6 +1,6 @@
 Bei Fragen, Problemen oder Kommentare bitte unter Issues oder bei Kommentare. Danke.
 
-🔷 Zpro1 v2.8.5– Moderne Mobile CPU-Architektur (2025)
+🔷 Zpro1 v3– Moderne Mobile CPU-Architektur (2025)
 
 Zpro1 v2 ist eine hochmoderne, realistisch umsetzbare CPU-Architektur für Smartphones und mobile Geräte, die Leistung, Effizienz und Systemintelligenz optimal verbindet. Sie basiert auf 12 physischen Kernen und innovativen Software-Fusionstechniken.
 
@@ -181,8 +181,13 @@ Dieser SC bewacht zugriffe auf diesen Daten. Bei verdächtigem Verhalten wie st�
 blockiert er sofort die verbindung zum ZSB, und stellt dem nutzer ein Warnsignal auf, das gerät sofort zurückzusetzen oder Masnahmen einzugreifen, da das gerät und die Daten gefärdet sein könnten.
 
 
-12.
-
+12. ZPI (Zpro Intilligents) NPU (neu):
+    ZPI NPU wurde von Hochrealistischen simulationen von Zpro1 via gem5 sehr lange trainiert, um Muster zu entwickeln, wie Zpro1 sich verhält.
+    ZPI wurde aber in abschnitten und "Wissensteilen" trainiert, damit es effizienter zwischen verhalten einzelner Komponennten unterscheiden kann. 
+    Als nächstes steuert ZPI nicht das z.b. VTDFS (Aufgrund Latenz), Sondern beispielsweise Thermonale anlegenheiten wie DOCU. Da Thermonale angelegenheiten nicht so schnell wie aktivierungen von z.b. VTDFS reagieren müssen, steuert die NPU das.
+    Außerdem ist die KI (Neuronales Netzwerk, Name ist Z Thermonal AI) selbst entwickelt und lokal auf dem gerät.
+    Als persöhnlichen Assistenten wird eine von Google oder OpenAI verwendet.
+    Technische Daten: Eine Modulare Thermonal Unit (TU) mit ZTAI (Z Thermonal AI) KI, eine KI Assistenten Unit, CPU core Assistents für NPU technologie, wo Effizients/Energiespar/Balanced/Prime Kerne bei Not die NPU assestieren können, wo durch hohe TOPS möglich sind       (zpro1 hat mit Core assistens Technelogie Theoretisch 71 TOPS). Bei geringer Leistungs Not die Energiespar cores, bei stark-Notfall P cores, und bei extrem Notfall alle Kerne.
 
 12. Wie kann man es ins Kernel einfügen? 
 Spezieller code wird zuerst für TDFS geschrieben ( Bei den steuerungs Dateien geschrieben in Github ), und ist dann eine erweiterung der Thread steuerung. Die thread steuerung davor wird dann auch optimiert für TDFS, damit sie optimal zusammen arbeiten können.

@@ -1,6 +1,6 @@
 Bei Fragen, Problemen oder Kommentare bitte unter Issues oder bei Kommentare. Danke.
 
-🔷 Zpro1 v3– Moderne Mobile CPU-Architektur (2025)
+🔷 Zpro1 v3.5– Moderne Mobile CPU-Architektur (2025)
 
 Zpro1 v2 ist eine hochmoderne, realistisch umsetzbare CPU-Architektur für Smartphones und mobile Geräte, die Leistung, Effizienz und Systemintelligenz optimal verbindet. Sie basiert auf 12 physischen Kernen und innovativen Software-Fusionstechniken.
 
@@ -202,6 +202,15 @@ Effizient: Intelligente Steuerung durch NPU und FEA.
 Leistungsstark: Hohe Single- und Multi-Core-Leistung.
 
 Flexibel: Paralleles Multitasking mit BAT.
+
+
+14. (BETA: Muss nicht mitentwickelt werden): Die MGRGs (Multipel Gate Result Gates):
+    MGRGs Technologie ist eine Weiterentwicklung der NANDs.
+    MGRGs Kovertieren standart Binärwerte statt wie NANDs mit nur AND und NOT Konvertierung in alle Logik Gatter: Also NOT, AND, OR, usw.
+    wenn alle ergebnisse da sind, also die End-Binärwerte durch Logik gatter, können die wenn gebraucht ausgegeben werden. wenn nicht, werden ungenutzte ergebnisse verworfen.
+    es berechnet die logik gatter-ausgaben parallel: wenn man gerade eine schwerere berechnet (wie AND), wird im hintergrund schon zb NOT und OR berechnet. wenn zb NOT fertig ist, wird sein ergebniss in einen extrem kleinen virtuellen speicher gespeichert, und wartet,      bis alle anderen es im virtuellen micro speicher gespeichert haben. dann findet die ausgabe statt.
+
+    
 
 Realisierbar: Vollständig umsetzbar mit aktueller 2025-Technologie.
 Entwickelt von mir mit 11 jahren.

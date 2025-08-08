@@ -24,6 +24,7 @@ Kernstruktur:
 ---
 
 1. Virtuall Thread Duplicating and Fusion System (VTDFS)
+
 !!!Funktioniert vollständig im Kernel!!!
 
 Jeder Kern kann sich dynamisch in 2 virtuelle Threads aufteilen.
@@ -208,9 +209,12 @@ Flexibel: Paralleles Multitasking mit BAT.
     MGRGs Technologie ist eine Weiterentwicklung der NANDs.
     MGRGs Kovertieren standart Binärwerte statt wie NANDs mit nur AND und NOT Konvertierung in alle Logik Gatter: Also NOT, AND, OR.
     wenn alle ergebnisse da sind, also die End-Binärwerte durch Logik gatter, können die wenn gebraucht ausgegeben werden. wenn nicht, werden ungenutzte ergebnisse verworfen.
-    es berechnet die logik gatter-ausgaben parallel: wenn man gerade eine schwerere berechnet (wie AND), wird im hintergrund schon z.b. NOT und OR berechnet. wenn z.b. NOT fertig ist, wird sein ergebniss in einen extrem kleinen virtuellen speicher gespeichert, und          wartet, bis alle anderen es im virtuellen micro speicher gespeichert haben. dann findet die ausgabe statt.
-    
+    es berechnet die logik gatter-ausgaben parallel: wenn man gerade eine schwerere berechnet (wie AND), wird im hintergrund schon z.b. NOT und OR berechnet. wenn z.b. NOT fertig ist, wird sein ergebniss in einen extrem kleinen virtuellen speicher gespeichert, und
+    wartet, bis alle anderen es im virtuellen micro speicher gespeichert haben. dann findet die ausgabe statt.
 
-Realisierbar: Vollständig umsetzbar mit aktueller 2025-Technologie.
+
+
+
+Realisierbar: Vollständig bis größtenteils umsetzbar mit aktueller 2025-Technologie.
 Entwickelt von mir mit 11 jahren.
 Diese Entwicklungsnotiz ist auch ein beweis dafür, das ich mit 11 jahren die Technologie erfunden habe. Der Anfang des Projekts war in mitte bis ende 2024.

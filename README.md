@@ -208,8 +208,7 @@ Flexibel: Paralleles Multitasking mit BAT.
     MGRGs Technologie ist eine Weiterentwicklung der NANDs.
     MGRGs Kovertieren standart Binärwerte statt wie NANDs mit nur AND und NOT Konvertierung in alle Logik Gatter: Also NOT, AND, OR.
     wenn alle ergebnisse da sind, also die End-Binärwerte durch Logik gatter, können die wenn gebraucht ausgegeben werden. wenn nicht, werden ungenutzte ergebnisse verworfen.
-    es berechnet die logik gatter-ausgaben parallel: wenn man gerade eine schwerere berechnet (wie AND), wird im hintergrund schon zb NOT und OR berechnet. wenn zb NOT fertig ist, wird sein ergebniss in einen extrem kleinen virtuellen speicher gespeichert, und wartet,      bis alle anderen es im virtuellen micro speicher gespeichert haben. dann findet die ausgabe statt.
-
+    es berechnet die logik gatter-ausgaben parallel: wenn man gerade eine schwerere berechnet (wie AND), wird im hintergrund schon z.b. NOT und OR berechnet. wenn z.b. NOT fertig ist, wird sein ergebniss in einen extrem kleinen virtuellen speicher gespeichert, und          wartet, bis alle anderen es im virtuellen micro speicher gespeichert haben. dann findet die ausgabe statt.
     
 
 Realisierbar: Vollständig umsetzbar mit aktueller 2025-Technologie.
